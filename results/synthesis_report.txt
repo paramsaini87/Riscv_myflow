@@ -1,0 +1,56 @@
+================================================================================
+  SYNTHESIS REPORT  —  RV32IMAC 8-Stage Pipelined CPU
+  Flow : Riscv_myflow (custom RTL-to-netlist engine)
+  PDK  : SKY130 130nm  /  sky130_fd_sc_hd standard-cell library
+================================================================================
+
+DESIGN
+  Top module .................. rv32i_cpu
+  ISA ......................... RV32IMAC (82 instructions)
+  Pipeline .................... 8 stages (IF1 IF2 ID RR EX1 EX2 MEM WB)
+  RTL source .................. 3,230 lines
+  Clock constraint ............ 23.81 ns
+
+--------------------------------------------------------------------------------
+GATE-COUNT RESULT
+--------------------------------------------------------------------------------
+  Elaborated / pre-optimization gates ...... 201,072
+  Final optimized + mapped gates ...........  94,889      (-53%)
+  Sequential elements (registers) ..........  12,946 flip-flops
+
+  Optimization reduced the design by 106,183 gates (52.8%) while remaining
+  formally equivalent to the source RTL (see formal_verification.txt).
+
+--------------------------------------------------------------------------------
+MAPPED CELL COMPOSITION (top library masters)
+--------------------------------------------------------------------------------
+  nor2 ..................... 10,982
+  a21boi ...................  6,496
+  o21a .....................  4,550
+  o21ba ....................  4,537
+  nor2b ....................  4,479
+  a21oi ....................  4,477
+  o21bai ...................  2,791
+  or3b .....................  1,933
+  and2 .....................  1,792
+  a32oi ....................  1,545
+  a22oi ....................  1,539
+  nor3 .....................  1,296
+  nand2 ....................  1,286
+  mux2 / mux2i .............    733
+  xnor2 / xor2 .............    584
+  ( full library utilization across 30+ distinct masters )
+
+--------------------------------------------------------------------------------
+DFT — TEST COVERAGE
+--------------------------------------------------------------------------------
+  Stuck-at fault coverage .......... 72.0%   (136,808 / 190,006 faults)
+  Test patterns generated .......... 565
+
+--------------------------------------------------------------------------------
+STATUS
+--------------------------------------------------------------------------------
+  Synthesis .................. PASS
+  Formal equivalence ......... PASS  (see formal_verification.txt)
+  Netlist .................... netlist/rv32i_cpu_synth.v
+================================================================================

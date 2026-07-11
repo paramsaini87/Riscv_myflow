@@ -1,0 +1,7 @@
+# Build / run artifacts
+*.ckpt
+*.log
+*.tmp
+results/synthesis_state.json
+web_state*.json
+.DS_Store
