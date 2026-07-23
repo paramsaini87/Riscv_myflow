@@ -52,16 +52,6 @@ DESIGN
   GDSII                 46.5 MB, hierarchical SREF  (pnr/gds/rv32i_cpu_final.gds)
 
 --------------------------------------------------------------------------------
- KNOWN NON-BLOCKING RESIDUALS (roadmap)
---------------------------------------------------------------------------------
-  - die.3 = 510  : post-legalization insertions (fillers / CTS buffers / antenna
-                   diodes) that bypass the legalizer's site-grid snap. Path to 0.
-  - m1.2 = 1000  : near-rail metal-1 signal-spacing cap — the standing
-                   detailed-route target for a fully DRC-clean tapeout.
-  - STA runtime  : ~30 min single-threaded at this scale — parallelization TODO.
-  - SSTA (statistical timing / yield) disabled — O(n^2) spatial correlation
-                   needs grid-bucketing before it can run at 80K gates.
-
 ================================================================================
  Every number in this report is from the engine's own signoff run (RUN 193,
  2026-07-23). Machine-readable full state: pnr/metrics/ (see METRICS_SUMMARY.md).
