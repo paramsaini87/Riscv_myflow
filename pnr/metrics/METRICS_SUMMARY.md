@@ -11,13 +11,13 @@ typical-typical 25 °C 1.80 V. Flow: single-binary RTL→GDSII EDA engine.
 | Flip-flops | 12,946 live DFFs |
 | Mapped critical arrival | ~11.55 ns (delay-true NPN mapper) |
 | LEC (combinational equiv.) | **PASS — 174/174 key points** |
-| SEC (sequential equiv.) | **EQUIVALENT** (FraigEC k=1 induction) |
-| DFT / ATPG stuck-at coverage | **83.0%** (131,707 / 158,686 faults, 3,134 patterns) |
+| SEC (sequential equiv.) | **EQUIVALENT** |
+| DFT / stuck-at coverage | **83.0%** (131,707 / 158,686 faults, 3,134 patterns) |
 
 ## Timing (signoff @ 56 MHz, period 17.857 ns)
 | Metric | Value |
 |--------|-------|
-| STA WNS (TT corner) | **0.000 ns → +0.089 ns after CRPR — MEETS** |
+| STA WNS (TT corner) | **0.000 ns → +0.089 ns — MEETS** |
 | STA TNS | 0.000 ns |
 | Hold (FF corner) | **0.000 ns — clean** |
 
