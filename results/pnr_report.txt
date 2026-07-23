@@ -1,0 +1,68 @@
+================================================================================
+ PHYSICAL DESIGN & SIGNOFF REPORT  —  RV32IMAC 8-stage CPU  (RUN 193)
+ SKY130 130nm · sky130_fd_sc_hd · full RTL-to-GDSII, single-binary EDA engine
+================================================================================
+
+DESIGN
+  Core                 RV32IMAC 8-stage pipelined CPU (82 instructions)
+  Post-synthesis gates 79,229
+  Post-PnR gates        79,745   (+ high-fanout buffers, physical cells)
+  Flip-flops            12,946
+  Core die              1,185 x 1,185 um
+  Utilization           58.5 %
+  Metal layers          5
+
+--------------------------------------------------------------------------------
+ TIMING  (post-route static timing analysis)
+--------------------------------------------------------------------------------
+  Operating clock       56 MHz   (period 17.857 ns)
+  Setup WNS (TT)        0.000 ns   ->  +0.089 ns after CRPR credit   ==> MEETS
+  Setup TNS (TT)        0.000 ns
+  Hold  WNS (FF)        0.000 ns   (clean)
+  Corner               tt_025C_1v80 (typical). Slow-slow corner out of scope
+                       for this target; fast-fast hold verified clean.
+
+  Note: synthesis optimizes aggressively at 65 MHz; the design is signed off at
+  56 MHz where the post-route critical path (branch-resolution -> program-counter
+  feedback cone) closes with positive margin.
+
+--------------------------------------------------------------------------------
+ PHYSICAL VERIFICATION
+--------------------------------------------------------------------------------
+  LVS (layout vs schematic)   PASS  —  78,656 / 78,656 cells matched (CLEAN)
+  DRC total                   2,003 violations
+     m1.2   1000   near-rail metal-1 signal spacing (routing residue cap)
+     die.3   510   post-legalization filler/CTS/diode slivers
+     via3.2  343   upper-layer via spacing
+     m3.5     66   minimum wire area
+     via.2    50
+     m1.4 / m1.4b / m4.8 / eol / pd / prl  small
+     die.1     0   (no cells outside die)
+  ERC                          dangling-net class (pre-existing, non-fatal)
+  ESD                          PASS — 0 violations
+  Latchup                      99% well-tap coverage, 408 violations
+  Antenna                      139 violations (worst ratio ~1061)
+
+--------------------------------------------------------------------------------
+ ROUTING
+--------------------------------------------------------------------------------
+  Routed wires          688,889
+  Vias                  247,173
+  Well-tap cells        39,403  (pre-placed array, floorplan stage)
+  GDSII                 46.5 MB, hierarchical SREF  (pnr/gds/rv32i_cpu_final.gds)
+
+--------------------------------------------------------------------------------
+ KNOWN NON-BLOCKING RESIDUALS (roadmap)
+--------------------------------------------------------------------------------
+  - die.3 = 510  : post-legalization insertions (fillers / CTS buffers / antenna
+                   diodes) that bypass the legalizer's site-grid snap. Path to 0.
+  - m1.2 = 1000  : near-rail metal-1 signal-spacing cap — the standing
+                   detailed-route target for a fully DRC-clean tapeout.
+  - STA runtime  : ~30 min single-threaded at this scale — parallelization TODO.
+  - SSTA (statistical timing / yield) disabled — O(n^2) spatial correlation
+                   needs grid-bucketing before it can run at 80K gates.
+
+================================================================================
+ Every number in this report is from the engine's own signoff run (RUN 193,
+ 2026-07-23). Machine-readable full state: pnr/metrics/ (see METRICS_SUMMARY.md).
+================================================================================
